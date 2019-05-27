@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class PlayerService {
   private playersDB: AngularFireList<Player>;
 
-  constructor(private db: AngularFireDatabase) { 
+  constructor(private db: AngularFireDatabase) {
     this.playersDB = this.db.list('/players', ref => ref.orderByChild('name'));
   }
 
@@ -22,7 +22,7 @@ export class PlayerService {
     );
   }
 
-  addPlaer(player: Player) {
+  addPlayer(player: Player) {
     return this.playersDB.push(player);
   }
 
@@ -32,7 +32,7 @@ export class PlayerService {
 
   editPlayer(newPlayerData) {
     const $key = newPlayerData.$key;
-    delete(newPlayerData.$key);
+    delete newPlayerData.$key;
     this.db.list('/players').update($key, newPlayerData);
   }
 }
