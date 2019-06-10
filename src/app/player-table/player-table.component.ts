@@ -17,7 +17,6 @@ export class PlayerTableComponent implements OnInit {
 
   ngOnInit() {
     this.players$ = this.playerService.getPlayers();
-    
   }
 
   newPlayer() {
@@ -25,7 +24,18 @@ export class PlayerTableComponent implements OnInit {
     this.selectedPlayer = null;
     setTimeout(() => {
       window.location.replace('#open-modal');
-    }, 0);
+    });
   }
 
+  editPlayer(player: Player) {
+    this.selectedPlayer = { ...player };
+    this.showModal = true;
+    setTimeout(() => {
+      window.location.replace('#open-modal');
+    });
+  }
+
+  closeDialog() {
+    this.showModal = false;
+  }
 }
